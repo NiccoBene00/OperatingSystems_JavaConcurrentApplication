@@ -6,12 +6,14 @@
 > La repository contine un unico file .md in cui si risponde alle domande più comuni fatte durante gli esami orali.
 
 *1) Introdurre il concetto di Interrupt Driven di un Sistema Operativo*
+
 I sitemi operativi "Interrupt Driven" hanno la particolarità di gestire le interruzioni del sistema (dovute a richieste dell'utente, richieste da parte di periferiche, timer, eccezioni)
 in maniera sistematica. Differentemente infatti da quei OS che utilizzano il polling, questi appena rilevata un'interruzione la confrontano con un interrupt vector che appunto contiene
 gli indirizzi delle routine di servizio associate. Non si ricorre dunque a nessun tipo di ciclo per il controllo periodico dell'evento interruzione, risparmiando così perdita di tempo 
 inutile.
 
 *2) Cosa sono e come sono gestite le interruzioni sincrone*
+
 Le interruzioni sincrone sono eventi che si verificano in modo correlato e sincronizzato con l'esecuzione del programma. Questo significa che avvengono in momenti specifici del flusso e
 direttamente collegate alle operazioni in corso. Le tre più comuni forme di interruzioni sincrone sono:
   - loop infiniti;
