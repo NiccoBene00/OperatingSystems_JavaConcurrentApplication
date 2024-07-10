@@ -77,4 +77,21 @@ i file utilizzati e letti durante l'esecuzione.
 
 *7) Fornire una panoramiche delle code necessarie per lo scheduling dei processi*
 
+I moderni sistemi operativi dispongono di tre diverse code per la gestione dello scheduling dei processi:
+  - Job queue: coda che contiene tutti i processi del sistema, ossia quelli negli stati ready, running o waiting;
+  - Ready queue: coda che contiene i soli processi che si trovano nello stato di ready, ossia quei processi che sono in attesa di essere assgnati alla CPU per l'effettiva esecuzione;
+  - Device queue: coda che contiene i processi che sono in attesa di un evento di I/O o di altri eventi esterni.
 
+La schedulazione (scheduling) dei processi può essere di due tipologie:
+  - schedulazione a lungo termine (job scheduling): os si occupa di assegnare i processi che si trovano nella coda di attesa nella coda di ready, ossia schedula i processi che sono in memoria secondaria
+    e hanno necessità di andare in memoria primaria;
+  - schedulazione a breve termine (CPU scheduling): os si occupa di assegnare i processi che si trovano nella ready queue alla CPU seguendo una qualche politica di scheduling.
+
+*8) Che cos'è il context switch?*
+
+Il cambio di contesto (o context switch) rappresenta l'operazione di cui si fa carico il processore quando si schedula un processo con un altro. In questo momento infatti la CPU continua a lavorare, ma esegue 
+piuttosto operazioni di salvataggio dei registri (si deve salvare infatti lo stato del processi che viene prelazionato e caricare lo stato del nuovo processo) invece che di compiti effettivamente utili. 
+
+*9) Che cos'è un processo zombie?*
+
+Un processo si trova in uno stato di zombie quando questo è un processo figlio che è terminato senza che il processo padre ne abbia richiesto ad esempio il suo valore di ritorno.
