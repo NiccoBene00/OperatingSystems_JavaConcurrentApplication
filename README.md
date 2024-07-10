@@ -50,3 +50,14 @@ caratteristiche della JVM:
   - Sicurezza: sono già presenti meccanismo di sicurezza che effettua il controllo delle istruzioni bytecode;
   - Gestione delle eccezioni;
   - Compilazione JIT: la compilazione Just-In-Time permette di compilare il bytecode in codice macchina nativo direttmante durante l'esecuzione del programma;
+  - Supporto per multithreading: modulo che consente la creazione e la gestione di thread all'interno dello stesso programma JAVA, consentendo così il supporto di applicazioni concorrenti e parallele.
+
+*5) Elencare quali sono i possibili stati in cui può trovarsi un processo dal momento della sua creazione sino alla sua terminazione*
+
+Durante il proprio ciclo di vita un processo può trovarsi in diversi cinque stati:
+  - "new": il processo è stato creato, ma ancora non ha eseguito la sua prima istruzione. Deve infatti ancora ottenere le risorse necessarie.
+  - "ready": il processo ha acquisito tutte le risorse necessarie eccetto la CPU;
+  - "running": il processo è attualmente in esecuzione sulla CPU;
+  - "waiting": il processo è in atteso di un qualche tipo di evente per continuare la sua esecuzione (I/0 ad esempio);
+  - "terminated": il processo ha terminato l'esecuzione di tutte le istruzioni, quindi si rilasciano le risorse acquisite.
+
