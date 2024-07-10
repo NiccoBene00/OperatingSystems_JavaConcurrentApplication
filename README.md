@@ -18,6 +18,7 @@ direttamente collegate alle operazioni in corso. Le tre più comuni forme di int
   - accessi a zone di memoria errate;
   - accessi concorrenti alla stessa zone di memoria (si pensi al caso in cui alcuni processi vogliano scrivere in un particalore indirizzo di memoria che allo stesso tempo è letto da altri
     processi);
+
 Gli ultimi due casi sono gestiti attraverso l'introduzione di una duplicità modalità di utilizzo del sistema opertivo: la user e la kernel mode. Se la user mode è accessibile dall'utente che può
 eseguire funzionalità di base, la kernel mode è direttamente accessibile dall'OS e permette il dialogo con tutte le risorse hw del sistema.
 Il primo caso invece viene risolto attraverso l'introduzione di un particolare timer, che ad intervalli regolari "risveglia" il sistema per un check: se viene riconosciuto un ciclo infinito allora
