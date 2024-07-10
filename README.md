@@ -95,3 +95,4 @@ piuttosto operazioni di salvataggio dei registri (si deve salvare infatti lo sta
 *9) Che cos'è un processo zombie?*
 
 Un processo si trova in uno stato di zombie quando questo è un processo figlio che è terminato senza che il processo padre ne abbia richiesto ad esempio il suo valore di ritorno.
+Si parla di processo zombie in quanto, nonostante abbia comunque finito di eseguire tutte le istruzioni associate, ha ancora allocato il PCB associato, dunque consumando inutilmente risorse del sistema.
