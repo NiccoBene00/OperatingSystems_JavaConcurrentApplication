@@ -69,3 +69,8 @@ I possibili passaggi consentiti tra questi cinque stati sono:
   - da "waiting" a "ready"; 
   - da "running" a "ready";
 
+*6) Introdurre il Process Control Block*
+
+Il PCB è una struttura dati che contiene le principali informazioni relative ad un processo in esecuzione. Si annoverano il PID (process identificator), lo stato corrente in cui si trova,
+il valore del Program Counter (registro che contiene l'indirizzo dell'istruzione corrente), lo stato dei registri della CPU, il numero di cicli di clock eseguiti sono a quel momento per quel processo,
+i file utilizzati e letti durante l'esecuzione.
