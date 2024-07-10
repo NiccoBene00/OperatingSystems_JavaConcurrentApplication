@@ -29,5 +29,16 @@ si tenta di uscirne (break), altrimenti si il timer viene resettato e il sistema
 *3) Introdurre le chiamate di sistema*
 
 Le chiamate di sistema sono delle richieste che i processi eseguono per avere l'autorizzazione per poter soddisfare operazini tipiche della kernel mode (ad esempio l'allocazione di memoria).
-Se ottenuta questa autorizzazione allora i processi possono eseguire le istruzioni associata alla chiamata di sistema eseguita. Ogni tipo di chiamata di sistema e istruzioni associate sono contenute
+Se ottenuta questa autorizzazione allora i processi possono eseguire le istruzioni associate alla chiamata di sistema eseguita. Ogni tipo di chiamata di sistema e istruzioni associate sono contenute
 in una tabella.
+Un processo che effettua una chiamata di sistema potrebbe avere la necessità di passare alcuni parametri. Questo passaggio avvine secondo tre diverse modalità:
+  - attraverso i regsitri di CPU;
+  - attraverso l'indirizzo di memoria in cui viene salvato il parametro;
+  - attraverso lo STACK.
+
+*4) Introdurre il concetto di macchina virtuale con particolare riferimento alla JVM*
+
+Una macchina virtuale è un'astrazione che permette di ottenere una sorta di "computer virtuale" dentro un elaboratore fisico. Questa tecnica offre quindi la possibilità di disporre di più sistemi 
+operativi sullo stesso hardware. Ovviamene più macchine virtuali si installano su uno stesso sistema maggiore alternanza nell'utilizzo di CPU si avrà, visto che se ne dispone di un numero limitato 
+su ogni elaboratore.
+La particolarità però è che ogni macchina virtuale percepisce di possedere il proprio kernel e di essere completamente separata dalle altre, fornendo quindi un ambiente isolato e autonomo per l'esecuzione dei processi e delle applicazioni al suo interno.
