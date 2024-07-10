@@ -43,4 +43,10 @@ operativi sullo stesso hardware. Ovviamene più macchine virtuali si installano 
 su ogni elaboratore.
 La particolarità però è che ogni macchina virtuale percepisce di possedere il proprio kernel e di essere completamente separata dalle altre, fornendo quindi un ambiente isolato e autonomo per l'esecuzione dei processi e delle applicazioni al suo interno.
 La Java Virtual Machine (JVM) ha la particolare caratteristica di permette l'esecuzione di programmi JAVA su qualsiasi macchina fisica. Infatti la JVM è responsabile dell'esecuzione del bytecode, ovvero quel 
-formato di linguaggio intermedio tra il codice sorgente scritto dal programmatore e il linguaggio macchina, che viene generato a seguito della compilazione del file sorgente. 
+formato di linguaggio intermedio tra il codice sorgente scritto dal programmatore e il linguaggio macchina, che viene generato a seguito della compilazione del file sorgente. Si riportino le principali
+caratteristiche della JVM:
+  - Indipendenza dalla piattaforma: una volta compilato, il bytecode può essere eseguito su qualsiasi piattaforma disponga di una JVM senza la necessità di ricompilazione;
+  - Garbage Collector: è direttemente implementato un meccanismo che gestisce l'allocazione e la deallocazione della memoria (prevenzione dai memory leaks)
+  - Sicurezza: sono già presenti meccanismo di sicurezza che effettua il controllo delle istruzioni bytecode;
+  - Gestione delle eccezioni;
+  - Compilazione JIT: la compilazione Just-In-Time permette di compilare il bytecode in codice macchina nativo direttmante durante l'esecuzione del programma;
