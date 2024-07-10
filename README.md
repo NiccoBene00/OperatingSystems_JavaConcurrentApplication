@@ -42,3 +42,5 @@ Una macchina virtuale è un'astrazione che permette di ottenere una sorta di "co
 operativi sullo stesso hardware. Ovviamene più macchine virtuali si installano su uno stesso sistema maggiore alternanza nell'utilizzo di CPU si avrà, visto che se ne dispone di un numero limitato 
 su ogni elaboratore.
 La particolarità però è che ogni macchina virtuale percepisce di possedere il proprio kernel e di essere completamente separata dalle altre, fornendo quindi un ambiente isolato e autonomo per l'esecuzione dei processi e delle applicazioni al suo interno.
+La Java Virtual Machine (JVM) ha la particolare caratteristica di permette l'esecuzione di programmi JAVA su qualsiasi macchina fisica. Infatti la JVM è responsabile dell'esecuzione del bytecode, ovvero quel 
+formato di linguaggio intermedio tra il codice sorgente scritto dal programmatore e il linguaggio macchina, che viene generato a seguito della compilazione del file sorgente. 
