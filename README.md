@@ -96,3 +96,12 @@ piuttosto operazioni di salvataggio dei registri (si deve salvare infatti lo sta
 
 Un processo si trova in uno stato di zombie quando questo è un processo figlio che è terminato senza che il processo padre ne abbia richiesto ad esempio il suo valore di ritorno.
 Si parla di processo zombie in quanto, nonostante abbia comunque finito di eseguire tutte le istruzioni associate, ha ancora allocato il PCB associato, dunque consumando inutilmente risorse del sistema.
+
+
+*10) Come avviene la comunicazione tra processi in un sistema operativo?*
+
+L'inter process comunication (IPC) all'interno di un sistema operativo può avvenire secondo due diverse modalità:
+  - memoria condivisa: viene creata un zona comune a più processi che necessita di accedere alle stesse informazioni. Questa modalità è indicata quando si vuole scambiare scambiare grandi quantità di dati
+    anche tra più di due processi;
+  - scambio si messaggi: i processi si scambiano veri e propri messaggi attraverso il kernel. Si utilizza quando si vuole scambiare poche quantità di dati prediligendo l'efficacia oppure quando è necessario
+    sincronizzare processi diversi.
