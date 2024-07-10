@@ -61,3 +61,11 @@ Durante il proprio ciclo di vita un processo può trovarsi in diversi cinque sta
   - "waiting": il processo è in atteso di un qualche tipo di evente per continuare la sua esecuzione (I/0 ad esempio);
   - "terminated": il processo ha terminato l'esecuzione di tutte le istruzioni, quindi si rilasciano le risorse acquisite.
 
+I possibili passaggi consentiti tra questi cinque stati sono:
+  - da "new" a "ready";
+  - da "ready" a "running";
+  - da "running" a "terminated";
+  - da "running" a "waiting";
+  - da "waiting" a "ready"; 
+  - da "running" a "ready";
+
