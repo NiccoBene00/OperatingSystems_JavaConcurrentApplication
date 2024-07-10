@@ -26,3 +26,8 @@ eseguire funzionalità di base, la kernel mode è direttamente accessibile dall'
 Il primo caso invece viene risolto attraverso l'introduzione di un particolare timer, che ad intervalli regolari "risveglia" il sistema per un check: se viene riconosciuto un ciclo infinito allora
 si tenta di uscirne (break), altrimenti si il timer viene resettato e il sistema continua con l'esecuzione delle istruzioni.
 
+*3) Introdurre le chiamate di sistema*
+
+Le chiamate di sistema sono delle richieste che i processi eseguono per avere l'autorizzazione per poter soddisfare operazini tipiche della kernel mode (ad esempio l'allocazione di memoria).
+Se ottenuta questa autorizzazione allora i processi possono eseguire le istruzioni associata alla chiamata di sistema eseguita. Ogni tipo di chiamata di sistema e istruzioni associate sono contenute
+in una tabella.
