@@ -112,4 +112,4 @@ Lo scambio di messaggi prevede l'introduzione di due operazioni quali *send(mess
   - comunicazione diretta: si deve conoscere il PID del mittente e del ricevete, dunque le operazioni vengono così modificate *send(P, message)* e *receive(P, message)*. Questa modalità consente
     dunque la comunicazione tra soli due processi alla volta e può essere implementata in maniera unidirezionale o bidirezionale;
   - comunicazione indiretta: in questo caso il sistema operativo apre una porta di comunicazione identificata da un ID. Tutti i processi che conoscono l'ID della porta possono sfruttarla attraverso le
-    operazioni *send(IDPort, message)* e *receive(IDPort, message)*. Si osservi che quando la porta + condivisa tra più processi si deve determinare anche come gestire la ricezione dei messaggi.
+    operazioni *send(IDPort, message)* e *receive(IDPort, message)*. Si osservi che quando la porta è condivisa tra più processi si deve determinare anche come gestire la ricezione dei messaggi.
