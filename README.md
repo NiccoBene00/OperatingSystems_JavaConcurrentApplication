@@ -152,4 +152,38 @@ I sistemi operativi gestiscono la situazione di stallo usufruendo di 3 diverse t
   - rilevamento e recupero: il sistema operativo verifica periodicamente se l'insieme dei processi non avanza nel soddisfacimento delle richieste, dunque applica un meccanismo di recupero dello stato totale dei      processi (rollback dello stato) prima del verificarsi di questo scenario. Il tutto richiede una gestione sofisticata degli stati e può comportare un ritardo nell'esecuzione delle operazioni;
   - ignorare il problema: gran parte dei sistemi operativi moderni passano sopra la problematica di stallo delegando il tutto alle applicazioni interessate.
 
-**16) **
+**16) Come si implementa la tecnica di allocazione contigua della memoria?**
+
+Partendo dal presupposto che ad ogni processo il sistema operativo assegna una porzione di memoria abbastanza ampia da poterlo contenere, un processo dunque è definito attraverso un intervallo di memoria (base + limite). Quando effettivamente il processo richiede l'accesso in memoria il MMU (Memory Management Unit) somma l'offset richiesto alla base del processo in questione e se non viene superato il limite allora la richiesta di accesso può essere soddisfatta altrimenti gli viene negato l'accesso.
+Quando poi il processo termina allora viene liberata la memoria da esso occupata: si viene quindi a creare un "buco di memoria". Questo buco non è altro che memoria libera allocabile per nuovi processi. L'allocazione contigua prevede tre diversi criteri di rimepimento: 
+  - first fit: si alloca il primo buco capace di contenere il processo;
+  - best fit: si alloca il buco più piccolo capace di contenere il processo;
+  - worst fit: si alloca il buco più grande per il nuovo processo.
+Indubbiamente l'approccio più efficiente è il best fit, ma richiede tempo e risorse computazionali. Inoltre genera il problema della frammentazione. Si parla di frammentazione esterna quando si vengono a creare tanti porzioni di memoria libera (tanti buchi) dove nessuno è in grado di contenere il nuovo processo (non è detto che la somma di tutti questi piccoli buchi sia ancora non sufficiente per contenerlo). Una possibile soluzione è l'operazione di compattazione: il sistema operativo riordina le aree di memoria libera in modo da crearne un unico blocco. Si tratta di un'operazione onerosa e costosa.
+Si parla invece di frammentazione interna quando un processo occupa solo una minima parte dell'area di memoria assegnata.
+
+**17) Parlare della paginazione**
+
+Nei sistemi operativi con gestione della memoria basata sulla paginazione gli indirizzi logici (indirizzi generati dalla CPU che permettono ai processi di utilizzare uno spazio di indirizzamento continuo e isolati indipendentemente dalla reale disposizione fisica delle memoria) sono suddivisi in pagine, mentre gli indirizzi fisici (è il risultato della mappatura del MMU che riceve in input un indirizzo logico) sono suddivisi in frame. Pagine e frame hanno la stesso lunghezza (in genere una potenza del due), ma non è detto che alla prima pagina corrisponda il primo frame, bensì possono essere assegnati in manier flessibile in relazione alla necessità della memoria. Per gestire l'associazione tra pagine e frame ad ogni processo è assegnata una tabella delle pagine che appunto mappa le pagine nei frame relativi. Inoltre ad ogni pagina è affiancato un bit di validità, che indica se quella pagina è già stata utilizzata o meno.
+Per gestire in maniera efficiente l'utilizzazione della memoria la paginazione sfrutta tre diversi approcci:
+  - paginazione gerarchica: suddivide la struttura della tabella delle pagine in più livelli gerarchici, garantendo efficienza anche nella gestione di grandi spazi di indirizzamento;
+  - paginazione con tabelle hash: la mappatura che la tabella delle pagine esegue tra pagine e frame è implementata mediante utilizzo di una tabella hash. In genere questo approccio viene considerato quando
+    si hanno indirizzi maggiori di 32 bit, ossia quando la tabella delle pagine raggiunge dimensioni proibitive;
+  - paginazione invertita: si utilizza una singola tabella delle pagine, anzichè una tabella per ogni processo. In questo caso l'indirizzo logico è composto da un identificare del processo, il numero di pagina e     l'offset. E' un metodo efficiente per quanto riguarda l'utilizzo della memoria, tuttavia rende difficile la condivisione di pagine tra processi.
+
+**18) Dare un panoramica completa del concetto di memoria virtuale **
+
+Quando si parla di memoria virtuale si fa riferimento alla tecnica utilizzata dal sistema operativo che simula un aumento di memoria primaria nei confronti della macchina fisica. Se infatti all'accensione la memoria RAM è libera, via via con l'accumolarsi dei processi in esecuzione questa non impiega troppo tempo a pienarsi (specialmente nelle macchine con RAM ridotte) generando errori di memoria. I moderni sistemi operativi implementano la memoria virtuale attraverso la paginazione su richiesta. Questa politica definisce quando e come si debba portare una pagina che è memorizzata su disco (memoria secondaria) nella RAM (memoria primaria). E' necessario ogniqualvotla si esegua questa operazione verificare il bit di validità della pagina in entrata: se infatti questo è settato ad 1 allora tale pagina è già presente. Invece la pagina che deve essere sostituita viene scelta attraverso tre diversi criteri:
+  - FIFO: la pagina più vecchia caricata in RAM è anche la prima che viene prelazionata per far spazio alla nuova pagina. Questa politica non è ottimale in quanto introduce la problematica di Belady, per alcune      sequenze di processi l'aumento dei frame aumenta il numero di accessi in RAM, generando di conseguenza un maggior tasso di page fault;
+  - sostituzione ottimale: viene rimossa la pagina che sarà utilizzata nel futuro più lontanto. Questa politica tuttavia richiede un livello di conoscenza da parte del sistema operativo circa il comportamento
+    futuro di ogni processi e dunque, anche se ottimale, non sempre è raggiungibile;
+  - LRU (Least Recently Used): viene rimossa la pagina che non è stata utilizzata per più tempo. In genere questa tecnica prevede di associare ad ogni processo uno stack o un contatore.
+    Si tratta ancora una volta però di un'implementazione rigorosa e onerosa in termini computazionali, quindi i moderni sistemi operativi si affidano a una sua versione semplificiata conosciuta come pseudo LRU:     ogni volta che una pagina è utilizzata viene settato un bit di validità, quindi si vanno a sostiuire quelle pagine che hanno tale bit a zero.
+
+**19) Che cos'è il trashing?**
+
+Il trashing è un problema che affligge la tecnica di paginazione su richiesta. Potrebbe infatti verificarsi il tipico scenario in cui la risorsa CPU sia prettamente occupata nel continuo trasferimento di pagina dalla memoria secondaria alla primaria e viceversa, invece che nell'effettiva esecuzione dei processi. Un tale scenario porta a un calo dell'utilizzo della CPU, calo che potrebbe essere inteso dallo stesso processore come indice di terminazione di alcuni processi, e ciò avrebbe come ripercussione l'accodarsi di ulteriori processi pronti. Una soluzione sarebbe quella di importare in memoria l'intero working set di ogni processo. Con working set si intende l'insieme di tutte le pagine che vengono utilizzate attivamente da un processo nel corso di tutto il suo ciclo di vita. Sebbene si riveli un'ottima soluzione, non sempre è attuabile in quanto bisogna tener presente che vi sono processi con working set veramente grandi.
+
+**20) Che cos'è il componente hw DMAC?**
+
+Con la sigla DMAC (Direct Memory Access Controller) si fa riferimento ad un componente hardware che permette l'accesso delle periferiche del sistema elaboratore senza il coinvolgimento diretto della risorsa processora, risorse che dunque sarà impiegata su altre attività prioritarie consentendo il trasferimento di dati in background. 
