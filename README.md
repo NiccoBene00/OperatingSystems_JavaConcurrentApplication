@@ -126,3 +126,14 @@ La relazione che sussiste tra le due tipologie di thread può essere implementat
   - uno a uno: un unico user thread è gestito da un unico kenel thread. Un'ipotetica chiamata bloccante non interferisce con gli altri user thread, tuttavia questa modalità offre un limitato grado di
     multiprogrammazione legato al numero di processori nel sistema;
   - molti a molti: si hanno N user thread gestiti da M kernel thread. Questa è la configurazione che, se possibile applicare, permette di ottimizzare l'utilizzo delle risorse dell'elaboratore. 
+
+
+**13) Dettagliare lo scheduling LINUX**
+
+Nel mondo UNIX ad ogni processo vengono assegante due tipi di priorità: una statica e una dinamica. La prima è rappresentata dal *nice value*, un valore fisso che decreta la priorità generale del processo, mentre
+la seconda può appunto variare nel tempo ed è o assegnata manualmente dall'utente oppure direttamente dal kernel.
+La schedulazione della CPU è basata sul concetto di epoca: ogni volta prima di ogni epoca si seleziona il set dei processi che deve essere eseguito e si determinano, per ogni processo, i quanti di tempi da assegnare. Una volta che un processo ha terminato i propri quanti di tempo, viene messo in attesa sino alla prossima epoca. La scelta dei quanti si basa sulla "goodness", una particolare funzione che restituisce 
+per il processo in questione un quantificatore in relazione al rapporto tra l'utilizzo della CPU del processo stesso e il suo *nice value*.
+
+Con il Linux Scheduler O(1) si fa in modo che la schedulazone dei processi avvenga sempre secondo una tempistica costante, e quindi non relazionata al numero dei processi ready in quell'istante. Ad ogni processo può essere assegnato un livello di priorità che varia tra 0 (priorità max) e 139 (priorità min). Sono presenti due code FIFO (First-In-First-Out) per ogni livello di priorità: una, detta "active queue", che accoda i processi che non hanno ancora terminato i loro rispettivi quanti, e l'altra, detta "expired queue", che contiene i processi che invece hanno terminato il quanto. Lo scheduler semplicemente sceglie tra i processi presenti nella "active queue" quello a priorità più alta, quindi gli assegna la CPU. Quando tutte le "active queue" sono vuote allora viene effettuato uno scambio: le "expired queue" diventano "active queue" e viceversa. Per favorire quei processi che, per motivi di priorità, hanno programmato un alto tasso di utilizzo della CPU, ma per la maggior parte dell'epoca si trovano in I/0 perchè, ad esempio prelazionati da altri processi a priorità maggiore, è stato pensato implementare una funzionalità di bonus, ossia un incremento del valore di priorità. In genere questo incremento varia nel range [-5;+5].
+
