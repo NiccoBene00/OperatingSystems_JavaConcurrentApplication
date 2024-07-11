@@ -105,3 +105,11 @@ L'inter process comunication (IPC) all'interno di un sistema operativo può avve
     anche tra più di due processi;
   - scambio si messaggi: i processi si scambiano veri e propri messaggi attraverso il kernel. Si utilizza quando si vuole scambiare poche quantità di dati prediligendo l'efficacia oppure quando è necessario
     sincronizzare processi diversi.
+
+*11) Approfondire la comunicazione tra processi mediante scambio di messaggi*
+
+Lo scambio di messaggi prevede l'introduzione di due operazioni quali *send(message)* e *receive(message)* che possono essere eseguite attraverso una duplice modalità:
+  - comunicazione diretta: si deve conoscere il PID del mittente e del ricevete, dunque le operazioni vengono così modificate *send(P, message)* e *receive(P, message)*. Questa modalità consente
+    dunque la comunicazione tra soli due processi alla volta e può essere implementata in maniera unidirezionale o bidirezionale;
+  - comunicazione indiretta: in questo caso il sistema operativo apre una porta di comunicazione identificata da un ID. Tutti i processi che conoscono l'ID della porta possono sfruttarla attraverso le
+    operazioni *send(IDPort, message)* e *receive(IDPort, message)*. Si osservi che quando la porta + condivisa tra più processi si deve determinare anche come gestire la ricezione dei messaggi.
