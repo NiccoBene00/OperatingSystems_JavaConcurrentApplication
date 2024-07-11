@@ -12,7 +12,7 @@ in maniera sistematica. Differentemente infatti da quei OS che utilizzano il pol
 gli indirizzi delle routine di servizio associate. Non si ricorre dunque a nessun tipo di ciclo per il controllo periodico dell'evento interruzione, risparmiando così perdita di tempo 
 inutile.
 
-**2) Cosa sono e come sono gestite le interruzioni sincrone**
+**2) Cosa sono e come sono gestite le interruzioni sincrone?**
 
 Le interruzioni sincrone sono eventi che si verificano in modo correlato e sincronizzato con l'esecuzione del programma. Questo significa che avvengono in momenti specifici del flusso e
 direttamente collegate alle operazioni in corso. Le tre più comuni forme di interruzioni sincrone sono:
@@ -114,4 +114,15 @@ Lo scambio di messaggi prevede l'introduzione di due operazioni quali *send(mess
   - comunicazione indiretta: in questo caso il sistema operativo apre una porta di comunicazione identificata da un ID. Tutti i processi che conoscono l'ID della porta possono sfruttarla attraverso le
     operazioni *send(IDPort, message)* e *receive(IDPort, message)*. Si osservi che quando la porta è condivisa tra più processi si deve determinare anche come gestire la ricezione dei messaggi.
 
-**12)**
+**12) Esplicitare la potenzialità di un sistema multithread**
+
+In un sistema monothread il sistema operativo è in grado di eseguire le istruzioni dei processi come se fosse una sola unica sequenza di istruzioni, non andando così a sfruttare le reale potenza dei processori
+di oggi. Con l'introduzione invece del multithreading, la stessa sequenza di istruzioni può essere eseguita parallelamente (si parla di parallelismo finto nei sistemi monoprocessore e parallelismo reale in 
+quelli multiprocessore).
+I thrad possono essere distinti in user thread e kernel thread: i primi svolgono operazioni di base, gli altri operazioni a livello kernel.
+La relazione che sussiste tra le due tipologie di thread può essere implementata secondo tre diverse configurazioni:
+  - molti a uno: più user thread sono gestiti da un unico kernel thrad. Si tratta della modalità che deve essere presa in considerazione quando si dispone di sistemi monoprocessore. Tuttavia
+    quando uno user thread effettua una chiamata bloccante, il kernel thread deve necessariamente bloccare l'esecuzione degli altri user thread;
+  - uno a uno: un unico user thread è gestito da un unico kenel thread. Un'ipotetica chiamata bloccante non interferisce con gli altri user thread, tuttavia questa modalità offre un limitato grado di
+    multiprogrammazione legato al numero di processori nel sistema;
+  - molti a molti: si hanno N user thread gestiti da M kernel thread. Questa è la configurazione che, se possibile applicare, permette di ottimizzare l'utilizzo delle risorse dell'elaboratore. 
