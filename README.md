@@ -5,14 +5,14 @@
 > [!IMPORTANT]
 > La repository contine un unico file .md in cui si risponde alle domande più comuni fatte durante gli esami orali.
 
-*1) Introdurre il concetto di Interrupt Driven di un Sistema Operativo*
+**1) Introdurre il concetto di Interrupt Driven di un Sistema Operativo**
 
 I sitemi operativi "Interrupt Driven" hanno la particolarità di gestire le interruzioni del sistema (dovute a richieste dell'utente, richieste da parte di periferiche, timer, eccezioni)
 in maniera sistematica. Differentemente infatti da quei OS che utilizzano il polling, questi appena rilevata un'interruzione la confrontano con un interrupt vector che appunto contiene
 gli indirizzi delle routine di servizio associate. Non si ricorre dunque a nessun tipo di ciclo per il controllo periodico dell'evento interruzione, risparmiando così perdita di tempo 
 inutile.
 
-*2) Cosa sono e come sono gestite le interruzioni sincrone*
+**2) Cosa sono e come sono gestite le interruzioni sincrone**
 
 Le interruzioni sincrone sono eventi che si verificano in modo correlato e sincronizzato con l'esecuzione del programma. Questo significa che avvengono in momenti specifici del flusso e
 direttamente collegate alle operazioni in corso. Le tre più comuni forme di interruzioni sincrone sono:
@@ -26,7 +26,7 @@ eseguire funzionalità di base, la kernel mode è direttamente accessibile dall'
 Il primo caso invece viene risolto attraverso l'introduzione di un particolare timer, che ad intervalli regolari "risveglia" il sistema per un check: se viene riconosciuto un ciclo infinito allora
 si tenta di uscirne (break), altrimenti si il timer viene resettato e il sistema continua con l'esecuzione delle istruzioni.
 
-*3) Introdurre le chiamate di sistema*
+**3) Introdurre le chiamate di sistema**
 
 Le chiamate di sistema sono delle richieste che i processi eseguono per avere l'autorizzazione per poter soddisfare operazini tipiche della kernel mode (ad esempio l'allocazione di memoria).
 Se ottenuta questa autorizzazione allora i processi possono eseguire le istruzioni associate alla chiamata di sistema eseguita. Ogni tipo di chiamata di sistema e istruzioni associate sono contenute
@@ -36,7 +36,7 @@ Un processo che effettua una chiamata di sistema potrebbe avere la necessità di
   - attraverso l'indirizzo di memoria in cui viene salvato il parametro;
   - attraverso lo STACK.
 
-*4) Introdurre il concetto di macchina virtuale con particolare riferimento alla JVM*
+**4) Introdurre il concetto di macchina virtuale con particolare riferimento alla JVM**
 
 Una macchina virtuale è un'astrazione che permette di ottenere una sorta di "computer virtuale" dentro un elaboratore fisico. Questa tecnica offre quindi la possibilità di disporre di più sistemi 
 operativi sullo stesso hardware. Ovviamene più macchine virtuali si installano su uno stesso sistema maggiore alternanza nell'utilizzo di CPU si avrà, visto che se ne dispone di un numero limitato 
@@ -52,7 +52,7 @@ caratteristiche della JVM:
   - Compilazione JIT: la compilazione Just-In-Time permette di compilare il bytecode in codice macchina nativo direttmante durante l'esecuzione del programma;
   - Supporto per multithreading: modulo che consente la creazione e la gestione di thread all'interno dello stesso programma JAVA, consentendo così il supporto di applicazioni concorrenti e parallele.
 
-*5) Elencare quali sono i possibili stati in cui può trovarsi un processo dal momento della sua creazione sino alla sua terminazione*
+**5) Elencare quali sono i possibili stati in cui può trovarsi un processo dal momento della sua creazione sino alla sua terminazione**
 
 Durante il proprio ciclo di vita un processo può trovarsi in diversi cinque stati:
   - "new": il processo è stato creato, ma ancora non ha eseguito la sua prima istruzione. Deve infatti ancora ottenere le risorse necessarie.
@@ -69,13 +69,13 @@ I possibili passaggi consentiti tra questi cinque stati sono:
   - da "waiting" a "ready"; 
   - da "running" a "ready";
 
-*6) Introdurre il Process Control Block*
+**6) Introdurre il Process Control Block**
 
 Il PCB è una struttura dati che contiene le principali informazioni relative ad un processo in esecuzione. Si annoverano il PID (process identificator), lo stato corrente in cui si trova,
 il valore del Program Counter (registro che contiene l'indirizzo dell'istruzione corrente), lo stato dei registri della CPU, il numero di cicli di clock eseguiti sono a quel momento per quel processo,
 i file utilizzati e letti durante l'esecuzione.
 
-*7) Fornire una panoramiche delle code necessarie per lo scheduling dei processi*
+**7) Fornire una panoramiche delle code necessarie per lo scheduling dei processi**
 
 I moderni sistemi operativi dispongono di tre diverse code per la gestione dello scheduling dei processi:
   - Job queue: coda che contiene tutti i processi del sistema, ossia quelli negli stati ready, running o waiting;
@@ -87,18 +87,18 @@ La schedulazione (scheduling) dei processi può essere di due tipologie:
     e hanno necessità di andare in memoria primaria;
   - schedulazione a breve termine (CPU scheduling): os si occupa di assegnare i processi che si trovano nella ready queue alla CPU seguendo una qualche politica di scheduling.
 
-*8) Che cos'è il context switch?*
+**8) Che cos'è il context switch?**
 
 Il cambio di contesto (o context switch) rappresenta l'operazione di cui si fa carico il processore quando si schedula un processo con un altro. In questo momento infatti la CPU continua a lavorare, ma esegue 
 piuttosto operazioni di salvataggio dei registri (si deve salvare infatti lo stato del processi che viene prelazionato e caricare lo stato del nuovo processo) invece che di compiti effettivamente utili. 
 
-*9) Che cos'è un processo zombie?*
+**9) Che cos'è un processo zombie?**
 
 Un processo si trova in uno stato di zombie quando questo è un processo figlio che è terminato senza che il processo padre ne abbia richiesto ad esempio il suo valore di ritorno.
 Si parla di processo zombie in quanto, nonostante abbia comunque finito di eseguire tutte le istruzioni associate, ha ancora allocato il PCB associato, dunque consumando inutilmente risorse del sistema.
 
 
-*10) Come avviene la comunicazione tra processi in un sistema operativo?*
+**10) Come avviene la comunicazione tra processi in un sistema operativo?**
 
 L'inter process comunication (IPC) all'interno di un sistema operativo può avvenire secondo due diverse modalità:
   - memoria condivisa: viene creata un zona comune a più processi che necessita di accedere alle stesse informazioni. Questa modalità è indicata quando si vuole scambiare scambiare grandi quantità di dati
@@ -106,10 +106,12 @@ L'inter process comunication (IPC) all'interno di un sistema operativo può avve
   - scambio si messaggi: i processi si scambiano veri e propri messaggi attraverso il kernel. Si utilizza quando si vuole scambiare poche quantità di dati prediligendo l'efficacia oppure quando è necessario
     sincronizzare processi diversi.
 
-*11) Approfondire la comunicazione tra processi mediante scambio di messaggi*
+**11) Approfondire la comunicazione tra processi mediante scambio di messaggi**
 
 Lo scambio di messaggi prevede l'introduzione di due operazioni quali *send(message)* e *receive(message)* che possono essere eseguite attraverso una duplice modalità:
   - comunicazione diretta: si deve conoscere il PID del mittente e del ricevete, dunque le operazioni vengono così modificate *send(P, message)* e *receive(P, message)*. Questa modalità consente
     dunque la comunicazione tra soli due processi alla volta e può essere implementata in maniera unidirezionale o bidirezionale;
   - comunicazione indiretta: in questo caso il sistema operativo apre una porta di comunicazione identificata da un ID. Tutti i processi che conoscono l'ID della porta possono sfruttarla attraverso le
     operazioni *send(IDPort, message)* e *receive(IDPort, message)*. Si osservi che quando la porta è condivisa tra più processi si deve determinare anche come gestire la ricezione dei messaggi.
+
+**12)**
