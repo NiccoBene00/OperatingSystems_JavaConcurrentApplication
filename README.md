@@ -5,7 +5,7 @@
 > [!IMPORTANT]
 > La repository contine un unico file .md in cui si risponde alle domande più comuni fatte durante gli esami orali.
 
-**1) Introdurre il concetto di Interrupt Driven di un Sistema Operativo**
+**1) Che cosa significa che un sistema operativo è interrupt driven?**
 
 I sitemi operativi "Interrupt Driven" hanno la particolarità di gestire le interruzioni del sistema (dovute a richieste dell'utente, richieste da parte di periferiche, timer, eccezioni)
 in maniera sistematica. Differentemente infatti da quei OS che utilizzano il polling, questi appena rilevata un'interruzione la confrontano con un interrupt vector che appunto contiene
