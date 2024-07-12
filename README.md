@@ -8,9 +8,7 @@
 **1) Che cosa significa che un sistema operativo è interrupt driven?**
 
 I sitemi operativi "Interrupt Driven" hanno la particolarità di gestire le interruzioni del sistema (dovute a richieste dell'utente, richieste da parte di periferiche, timer, eccezioni)
-in maniera sistematica. Differentemente infatti da quei OS che utilizzano il polling, questi appena rilevata un'interruzione la confrontano con un interrupt vector che appunto contiene
-gli indirizzi delle routine di servizio associate. Non si ricorre dunque a nessun tipo di ciclo per il controllo periodico dell'evento interruzione, risparmiando così perdita di tempo 
-inutile.
+in maniera sistematica. Differentemente infatti da quei OS che utilizzano il polling, un sistema operativo "interrupt driven" (basato su interrupt) è progettato per rispondere rapidamente a eventi esterni e interni tramite un meccanismo chiamato "interrupt" (interruzione). Gli interrupt sono segnali inviati al processore che indicano che un evento che richiede attenzione immediata è avvenuto. Questo approccio consente al sistema operativo di gestire le risorse in modo efficiente e di rispondere prontamente a situazioni urgenti. Esite una tabella degli interruput che contiene gli indirizzi delle routine di servizio associate ad ogni interrupt.
 
 **2) Cosa sono e come sono gestite le interruzioni sincrone?**
 
