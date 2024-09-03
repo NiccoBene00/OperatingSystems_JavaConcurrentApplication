@@ -1,4 +1,4 @@
-# SISTEMI OPERATIVI - Oral exam 
+# SISTEMI OPERATIVI 
 ## Studente: Niccolò Benedetto MAT. 7024656
 ## Docente: Pierfrancesco Bellini
 
