@@ -3,7 +3,8 @@
 ## Docente: Pierfrancesco Bellini
 
 > [!IMPORTANT]
-> La repository contine un unico file .md in cui si risponde alle domande più comuni fatte durante gli esami orali.
+> Nel file .md p è riportata la discussione effettuata durante l'orale.
+> Il file .zip contiene l'applicazione JAVA concorrente presentata allo scritto.
 
 **1) Che cosa significa che un sistema operativo è interrupt driven?**
 
